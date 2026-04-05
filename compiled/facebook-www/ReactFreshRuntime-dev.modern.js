@@ -107,7 +107,6 @@ __DEV__ &&
       type = allSignaturesByType.get(type);
       void 0 !== type && computeFullKey(type);
     }
-    require("ReactFeatureFlags");
     var REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref"),
       REACT_MEMO_TYPE = Symbol.for("react.memo"),
       PossiblyWeakMap = "function" === typeof WeakMap ? WeakMap : Map,
@@ -145,22 +144,6 @@ __DEV__ &&
           hasCustomHooks &&
           ((didCollectHooks = !0), collectCustomHooksForSignature(savedType));
       };
-    };
-    exports.findAffectedHostInstances = function (families) {
-      var affectedInstances = new Set();
-      mountedRoots.forEach(function (root) {
-        var helpers = helpersByRoot.get(root);
-        if (void 0 === helpers)
-          throw Error(
-            "Could not find helpers for a root. This is a bug in React Refresh."
-          );
-        helpers
-          .findHostInstancesForRefresh(root, families)
-          .forEach(function (inst) {
-            affectedInstances.add(inst);
-          });
-      });
-      return affectedInstances;
     };
     exports.getFamilyByID = function (id) {
       return allFamiliesByID.get(id);
